@@ -9,7 +9,9 @@ icon_wrong = "🤦"
 icon_exit = "🔌"
 icon_analyzing = "💻"
 
-folder = Path(__file__).parent
+repo_folder = Path(__file__).parent
+data_folder = repo_folder / "data_exam"
+result_folder = repo_folder / "results"
 
 while True: 
     try:
@@ -26,7 +28,7 @@ while True:
             print("Vui lòng nhập lại tên lớp")
             continue
         else:
-            file_name = folder/f"{class_name}.txt"
+            file_name = data_folder/f"{class_name}.txt"
             if file_name.exists():
                 print(f"{icon_right} Đã mở file đáp án của lớp {class_name} thành công")
                 with open(file_name, "r+", encoding="utf-8") as f:
@@ -63,7 +65,7 @@ while True:
                     # print(f"Điểm từng học sinh trong lớp:")
                     top_score = []
                     all_score = []
-                    save_file_name = folder/f"{class_name}_grade.txt"
+                    save_file_name = result_folder/f"{class_name}_grade.txt"
                     with open(save_file_name, "w", encoding="utf-8") as sf:
                         for valid_exam in total_valid_exam:
                             right_answer = sum(1 for a, b in zip(valid_exam[1:], list_answer_key) if a == b)
